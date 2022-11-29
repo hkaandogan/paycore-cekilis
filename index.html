@@ -52,6 +52,8 @@
                             <div style="margin-top: 250px;">
                                 <h2 style="color: white; ">Kazanan Numara </h2>
                                 <p id="currentResult" style="height: 200px; margin-top: 100px;"></p>
+                                <h2 style="color: white; ">Yedek Numara </h2>
+                                <p id="currentResult2" style="height: 200px; margin-top: 100px;"></p>
                             </div>
                         </div>
                     </div>
@@ -93,9 +95,16 @@
                                                 <button id="btnRandom" class="btn btn-default" style="margin-top: 50px">
                                                     ÇEKİLİŞ YAP
                                                 </button>
+                                                <button id="btnYedek" class="btn btn-default" style="margin-top: 50px">
+                                                    YEDEKLERİ SEÇ
+                                                </button>
                                                 <div style="margin-top: 200px;">
                                                     <h4 style="color: #0033a0">Kazanan Numaralar</h4>
                                                     <div id="oldResult" style="font-size: 18px; font-weight: bold; border-width: 0px; max-height: fit-content;"></div>
+                                                </div>
+                                                <div style="margin-top: 200px;">
+                                                    <h4 style="color: #0033a0">Yedek Numaralar</h4>
+                                                    <div id="yedekResult2" style="font-size: 18px; font-weight: bold; border-width: 0px; max-height: fit-content;"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -111,7 +120,7 @@
                                                     <label id="specifiedLen">
                                                         <input type="radio" name="type" value="5">
                                                         <span>Liste</span>
-                                                        <textarea id="list" disabled
+                                                        <textarea id="list" value="kaan"
                                                                   placeholder="Lütfen her öğeyi yeni bir satıra girin."
                                                                   spellcheck="false"
                                                                   rows="6" autocomplete="off"></textarea>
@@ -171,7 +180,7 @@
     </div>
     </section>
 
-<!--/PhotoSwipe Popup-->
+
 
 <!-- Scripts -->
 <script src="js/jquery-1.11.3.min.js"></script>
@@ -192,7 +201,6 @@
 <script src="js/ThreeCanvas.js"></script>
 <script src="js/snow.js"></script>
 <script src="js/typed.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxXt2P7-U38bK0xEFIT-ebZJ1ngK8wjww"></script>
 <script src="js/init.js"></script>
 
 <script type="text/javascript">
@@ -293,13 +301,10 @@
                     $("#titleResult").text("")
                     //$("#btnRandom").prop("disabled", false);
 
-                    if (isTypeList) {
-                        lstWinnerItem.push(listItems[num]);
-                        $("#oldResult").text(lstWinnerItem.join(" - "))
-                    } else {
+
                         lstWinnerNumber.push(num);
                         $("#oldResult").text(lstWinnerNumber.join(" - "))
-                    }
+                    
                     clearInterval(random);
                 }
                 waitingTime = waitingTime - 100;
@@ -321,8 +326,135 @@
             return uniqueArray;
         }
     });
-
 </script>
+
+
+<script type="text/javascript">
+
+    $(function() {
+        var lstWinnerNumber2 = [];
+        var lstWinnerItem = [];
+        $('input[name=type]').change(function() {
+            if ($('input[name=type]:checked').val() == "1") {
+                $("#start").prop("disabled", false);
+                $("#end").prop("disabled", false);
+            } else {
+                $("#start").prop("disabled", true);
+                $("#end").prop("disabled", true);
+                $("#list").prop("disabled", false);
+            }
+        });
+
+        $('#btnYedek').click(function() {
+            var counter2 = 0;
+            var i2 = setInterval(function() {
+                generateRandom(counter2);
+                $('.random-left-count2').text(50 - counter2);
+                counter2++;
+                if (counter2 === 20) { //how many random number to generate
+                    clearInterval(i2);
+                    setTimeout(() => {
+                        $('.random-left-count2').text(0);
+                    }, 1500)
+                }
+            }, 1500); //timer in 1sec
+        });
+
+        function generateRandom(counter2) {
+            var min, max;
+            var listItems = [];
+            var isTypeList = false;
+            min = parseInt($("#start").val());
+            max = parseInt($("#end").val());
+
+            min = isNaN(min) ? 0 : min;
+            max = isNaN(max) ? 0 : max;
+
+            if (parseFloat($("#waitingTime").val()) < 0) {
+                alert("Lütfen doldurun 'Sonucu daha sonra gördünüz mü? saniye");
+                $("#waitingTime").focus();
+                return;
+            }
+
+            // delay time
+            var waitingTime = 0;
+            if ($("#waitingTime").val()) {
+                waitingTime = $("#waitingTime").val() * 1000;
+            }
+
+            $("#titleResult2").text("");
+            $("#currentResult2").text("");
+            $("#yedekResult2").text(lstWinnerNumber2.join(" - "));
+            //$("#btnYedek").prop("disabled", true);
+
+            if (isTypeList && lstWinnerItem.length === listItems.length) {
+                lstWinnerItem = [];
+            } else if (lstWinnerNumber2.length === (max - min + 1)) {
+                lstWinnerNumber2 = [];
+            }
+
+            // set font size
+            if (isTypeList) {
+                $("#currentResult2").css("fontSize", "90px");
+                $("#currentResult2").css("min-height", "200px");
+                $("#currentResult2").css("padding-top", "30px");
+            } else {
+                $("#currentResult2").css("fontSize", "135px");
+                $("#currentResult2").css("min-height", "");
+                $("#currentResult2").css("padding-top", "");
+            }
+
+            var random = setInterval(function() {
+                var isLoop = true;
+                var num;
+                while (isLoop) {
+                    num = getRndInteger(min, max);
+                    if (isTypeList) {
+                        if (lstWinnerItem.indexOf(listItems[num]) < 0) {
+                            $("#currentResult2").text(listItems[num]);
+                            isLoop = false;
+                        }
+                    } else {
+                        if (lstWinnerNumber2.indexOf(num) < 0) {
+                            $("#currentResult2").text(num);
+                            isLoop = false;
+                        }
+                    }
+                }
+
+                if (waitingTime <= 0) {
+                    $("#titleResult2").text("")
+                    //$("#btnYedek").prop("disabled", false);
+
+
+                        lstWinnerNumber2.push(num);
+                        $("#yedekResult2").text(lstWinnerNumber2.join(" - "))
+                    
+                    clearInterval(random);
+                }
+                waitingTime = waitingTime - 100;
+            }, 100);
+        }
+
+        function getRndInteger(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function getUnique(array) {
+            var uniqueArray = [];
+
+            for (i = 0; i < array.length; i++) {
+                if (uniqueArray.indexOf(array[i]) === -1) {
+                    uniqueArray.push(array[i]);
+                }
+            }
+            return uniqueArray;
+        }
+    });
+</script>
+
+
+
 
 </body>
 </html>
