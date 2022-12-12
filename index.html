@@ -43,7 +43,7 @@
                 <section class="col-lg-9 col-md-10 col-sm-11 col-xs-11 content-wrap align-center sec-pad">
                     <div class="table-wrap">
                         <div class="table-cell vertical-align-middle">
-                            <!--Logo-->
+                            <!--Logo
                             <header class="logo margin-bottom-25">
                                 <img src="img/paycore-logo.png" alt="logo">
                             </header>
@@ -89,8 +89,8 @@
                                         <div id="resultArea" style="border-width: 0px; max-height: fit-content;">
                                             <div style="border-width: 0px; max-height: fit-content; text-align: center;">
                                                 <div>
-                                                    <h2 class="wellcome-text" style="color: #0033a0">Kalan Çekiliş</h2>
-                                                    <h1 class="random-left-count" style="margin-top: 20px; color: #0033a0"></h1>
+                                                    <h2 class="wellcome-text" style="color: #b51e0e">Kalan Çekiliş</h2>
+                                                    <h1 class="random-left-count" style="margin-top: 20px; color: #b51e0e"></h1>
                                                 </div>
                                                 <button id="btnRandom" class="btn btn-default" style="margin-top: 50px">
                                                     ÇEKİLİŞ YAP
@@ -99,11 +99,11 @@
                                                     YEDEKLERİ SEÇ
                                                 </button>
                                                 <div style="margin-top: 200px;">
-                                                    <h4 style="color: #0033a0">Kazanan Numaralar</h4>
+                                                    <h4 style="color: #b51e0e">Kazanan Numaralar</h4>
                                                     <div id="oldResult" style="font-size: 18px; font-weight: bold; border-width: 0px; max-height: fit-content;"></div>
                                                 </div>
                                                 <div style="margin-top: 200px;">
-                                                    <h4 style="color: #0033a0">Yedek Numaralar</h4>
+                                                    <h4 style="color: #b51e0e">Yedek Numaralar</h4>
                                                     <div id="yedekResult2" style="font-size: 18px; font-weight: bold; border-width: 0px; max-height: fit-content;"></div>
                                                 </div>
                                             </div>
@@ -129,7 +129,7 @@
 
                                                 <p class="margin_bottom_10">
                                                     <label>
-													                    <span>Sonucu görün <input type="number" id="waitingTime" value="1">
+													                    <span>Sonucu görün <input type="number" id="waitingTime" value="5">
 													                    saniye</span>
                                                     </label><br>
                                                 </p>
@@ -230,9 +230,9 @@
                     clearInterval(i);
                     setTimeout(() => {
                         $('.random-left-count').text(0);
-                    }, 1500)
+                    }, 6000)
                 }
-            }, 1500); //timer in 1sec
+            }, 6000); //timer in 1sec
         });
 
         function generateRandom(counter) {
@@ -355,9 +355,9 @@
                     clearInterval(i2);
                     setTimeout(() => {
                         $('.random-left-count2').text(0);
-                    }, 1500)
+                    }, 6000)
                 }
-            }, 1500); //timer in 1sec
+            }, 6000); //timer in 1sec
         });
 
         function generateRandom(counter2) {
