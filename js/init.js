@@ -125,17 +125,7 @@ function porky(){
 		loopCount: false
 	});
 	
-	/*Typed js for title tag*/
-	$("#title").typed({
-		strings: ["Hello..!", "Welcome..!", "Enjoy..!"],
-		typeSpeed: 300,
-		backDelay: 900,
-		loop: true,
-		cursorChar: "|",
-		contentType: 'html', // or text
-		// defaults to false for infinite loop
-		loopCount: false
-	});
+
 	/*click functions*/
 	var target = $('#splitlayout');
 	$(".about div").on('click', function(){
@@ -366,17 +356,7 @@ function porky(){
 				google.maps.event.trigger(map, "resize");
 				map.setCenter(center);
 			});	
-			var contentString = '<div id="content-map-marker" style="text-align:left; padding-top:10px; padding-left:10px">'+
-				'<div id="siteNotice">'+
-				'</div>'+
-				'<h4 id="firstHeading" class="firstHeading" style="color:#000; margin-bottom:0px;"><strong>Hello Friend!</strong></h4>'+
-				'<div id="bodyContent">'+
-				'<p style="font-family:Verdana; color:#999; font-size:12px; margin-bottom:10px">Here we are. Come to drink a coffee!</p>'+
-				'</div>'+
-				'</div>';
-			var infowindow = new google.maps.InfoWindow({
-				content: contentString
-			});	
+
 			var companyImage = new google.maps.MarkerImage('img/pin-dark.png',
 				new google.maps.Size(58,63),<!-- Width and height of the marker -->
 				new google.maps.Point(0,0),
