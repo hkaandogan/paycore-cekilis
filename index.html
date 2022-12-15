@@ -50,10 +50,12 @@
                             <!--/Logo-->
 
                             <div style="margin-top: 5em;">
-                                <h3 style="color: white; ">Kazanan Numara </h2>
+                                <h2 style="color: white; ">Kazanan Numara </h2>
                                 <p id="currentResult" style="height: 100px; margin-top: 50px;"></p>
+                                <!-- YEDEK KAZANAN
                                 <h3 style="color: white; ">Yedek Numara </h2>
                                 <p id="currentResult2" style="height: 100px; margin-top: 50px;"></p>
+                                -->
                             </div>
                         </div>
                     </div>
@@ -95,17 +97,21 @@
                                                 <button id="btnRandom" class="btn btn-default" style="margin-top: 5em">
                                                     ÇEKİLİŞ YAP
                                                 </button>
+                                                <!--YEDEK BUTON
                                                 <button id="btnYedek" class="btn btn-default" style="margin-top: 5em">
                                                     YEDEKLERİ SEÇ
                                                 </button>
+                                                -->
                                                 <div style="margin-top: 5em;">
                                                     <h4 style="color: #b51e0e">Kazanan Numaralar</h4>
-                                                    <div id="oldResult" style="font-size: 14px; font-weight: bold; border-width: 0px; max-height: fit-content;"></div>
+                                                    <div id="oldResult" style="font-size: 30px; font-weight: bold; border-width: 0px; max-height: fit-content;"></div>
                                                 </div>
+                                                <!-- YEDEK SONUÇ
                                                 <div style="margin-top: 20px;">
                                                     <h4 style="color: #b51e0e">Yedek Numaralar</h4>
                                                     <div id="yedekResult2" style="font-size: 14px; font-weight: bold; border-width: 0px; max-height: fit-content;"></div>
                                                 </div>
+                                                -->
                                             </div>
                                         </div>
                                         <div class="multi_column_box" style="display: block;">
@@ -113,7 +119,7 @@
                                                 <p class="margin_bottom_10">
                                                     <label id="specifiedLen">
                                                         <input type="radio" name="type" value="1" checked="">
-                                                        <span>Sayı aralığı</span> <input type="number" id="start" value="0"> ～ <input type="number" id="end" value="500">
+                                                        <span>Sayı aralığı</span> <input type="number" id="start" value="0"> ～ <input type="number" id="end" value="450">
                                                     </label>
                                                 </p>
                                                 <p class="margin_bottom_10">
@@ -274,7 +280,7 @@
                 $("#currentResult").css("min-height", "200px");
                 $("#currentResult").css("padding-top", "30px");
             } else {
-                $("#currentResult").css("fontSize", "100px");
+                $("#currentResult").css("fontSize", "135px");
                 $("#currentResult").css("min-height", "");
                 $("#currentResult").css("padding-top", "");
             }
